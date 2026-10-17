@@ -1,0 +1,22 @@
+{
+  "desktop-empty": {
+    "pixels_different": 0,
+    "total_pixels": 3031200,
+    "bbox": null
+  },
+  "desktop-settings": {
+    "pixels_different": 0,
+    "total_pixels": 1512000,
+    "bbox": null
+  },
+  "mobile-empty": {
+    "pixels_different": 0,
+    "total_pixels": 875940,
+    "bbox": null
+  },
+  "mobile-settings": {
+    "pixels_different": 0,
+    "total_pixels": 329160,
+    "bbox": null
+  }
+}

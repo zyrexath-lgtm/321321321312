@@ -1,0 +1,102 @@
+{
+  "structural_validity": "passed",
+  "untouched_parts_and_text": "passed",
+  "libreoffice": "passed",
+  "microsoft_word": "not tested",
+  "documents": [
+    {
+      "file": "academic-original.docx",
+      "bytes": 10238,
+      "zip_parts": 18,
+      "xml_parts": 16,
+      "paragraphs": 37,
+      "tables": 2,
+      "sections": 3,
+      "media_sha256": {
+        "word/media/image1.png": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "word/embeddings/worksheet.xlsx": "8962a774649fc664d3e37b22bb4a5e7824daddb4f761882566ac9cab6ce991f2"
+      },
+      "python_docx": {
+        "sections": 3,
+        "tables": 1,
+        "inline_shapes": 1,
+        "section_sizes_twips": [
+          [
+            11906,
+            16838
+          ],
+          [
+            16838,
+            11906
+          ],
+          [
+            11906,
+            16838
+          ]
+        ]
+      },
+      "libreoffice": {
+        "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+        "pdf_bytes": 93155,
+        "pdf_pages": 3,
+        "pdf_orientations": [
+          "portrait",
+          "landscape",
+          "portrait"
+        ],
+        "pdf_text_verified": true,
+        "resaved_docx": {
+          "bytes": 20748,
+          "xml_parts": 32
+        }
+      }
+    },
+    {
+      "file": "academic-fixed.docx",
+      "bytes": 10317,
+      "zip_parts": 18,
+      "xml_parts": 16,
+      "paragraphs": 37,
+      "tables": 2,
+      "sections": 3,
+      "media_sha256": {
+        "word/media/image1.png": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+        "word/embeddings/worksheet.xlsx": "8962a774649fc664d3e37b22bb4a5e7824daddb4f761882566ac9cab6ce991f2"
+      },
+      "python_docx": {
+        "sections": 3,
+        "tables": 1,
+        "inline_shapes": 1,
+        "section_sizes_twips": [
+          [
+            11906,
+            16838
+          ],
+          [
+            16838,
+            11906
+          ],
+          [
+            11906,
+            16838
+          ]
+        ]
+      },
+      "libreoffice": {
+        "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+        "pdf_bytes": 108450,
+        "pdf_pages": 3,
+        "pdf_orientations": [
+          "portrait",
+          "landscape",
+          "portrait"
+        ],
+        "pdf_text_verified": true,
+        "resaved_docx": {
+          "bytes": 20832,
+          "xml_parts": 32
+        }
+      }
+    }
+  ]
+}

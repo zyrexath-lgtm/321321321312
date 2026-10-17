@@ -1,0 +1,223 @@
+.document-visual {
+  height: 461px;
+  position: relative;
+  margin-top: -4px;
+  background-image:
+    linear-gradient(#40503912 1px, transparent 1px),
+    linear-gradient(90deg, #40503912 1px, transparent 1px);
+  background-size: 31px 31px;
+  isolation: isolate;
+}
+.document-visual:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse, #10171400 10%, #101714 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+.visual-topline {
+  display: flex;
+  justify-content: space-between;
+  color: #72846a;
+  font-size: 6.5px;
+  letter-spacing: 1.2px;
+  position: absolute;
+  top: 5px;
+  left: 36px;
+  right: 8px;
+}
+.visual-topline .live-dot {
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+.document-orbit {
+  width: 356px;
+  height: 356px;
+  border: 1px solid #5c71491c;
+  border-radius: 50%;
+  position: absolute;
+  top: 56px;
+  left: 24px;
+  z-index: -1;
+  box-shadow:
+    0 0 0 39px #5c714908,
+    0 0 0 79px #5c714905;
+}
+.paper-sheet {
+  width: 234px;
+  height: 320px;
+  border-radius: 3px;
+  position: absolute;
+  box-shadow: 0 20px 35px #0003;
+}
+.paper-back {
+  background: #3b4b32;
+  left: 105px;
+  top: 63px;
+  transform: rotate(9deg);
+  border: 1px solid #68765d33;
+}
+.main-paper {
+  left: 78px;
+  top: 65px;
+  transform: rotate(-7deg);
+  background: #dfe2d2;
+  color: #263322;
+  padding: 24px 24px;
+  box-shadow:
+    0 25px 60px #0004,
+    inset 0 0 25px #bec6ad3b;
+  animation: paper-breathe 8s ease-in-out infinite;
+}
+.paper-meta {
+  font-size: 5.5px;
+  letter-spacing: 0.9px;
+  display: flex;
+  justify-content: space-between;
+  color: #768269;
+}
+.paper-meta span {
+  font-family: monospace;
+  font-size: 5px;
+  letter-spacing: 0;
+}
+.paper-title {
+  font-family: Georgia, serif;
+  font-size: 31px;
+  line-height: 1.05;
+  margin-top: 30px;
+  letter-spacing: -1px;
+}
+.paper-rule {
+  height: 1px;
+  width: 21px;
+  background: #71835b;
+  margin: 15px 0 12px;
+}
+.paper-lines {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.paper-lines i {
+  height: 2px;
+  background: #aeb8a2;
+  border-radius: 1px;
+  opacity: 0.7;
+}
+.paper-lines i:nth-child(3n) {
+  width: 90%;
+}
+.paper-lines i:last-child {
+  width: 58%;
+}
+.paper-section {
+  margin: 18px 0 10px;
+  font-size: 7px;
+  font-weight: 700;
+}
+.paper-lines.shorter {
+  gap: 4px;
+}
+.paper-footer {
+  position: absolute;
+  bottom: 18px;
+  left: 24px;
+  font-size: 4.5px;
+  letter-spacing: 1.1px;
+  color: #8d997c;
+}
+.paper-side-mark {
+  position: absolute;
+  right: 12px;
+  top: 112px;
+  width: 3px;
+  height: 108px;
+  background: #8ba4641a;
+  border-top: 1px solid #9cae82;
+  border-bottom: 1px solid #9cae82;
+}
+.visual-tag {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 9px;
+  letter-spacing: 0.1px;
+  border: 1px solid #64734a62;
+  box-shadow: 0 8px 25px #0002;
+  background: #213022e6;
+  backdrop-filter: blur(10px);
+  padding: 12px 15px;
+  border-radius: 5px;
+  white-space: nowrap;
+  color: #afbd9f;
+}
+.visual-tag svg {
+  color: var(--lime);
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #556e3840;
+}
+.visual-tag b {
+  font-weight: 500;
+  color: #e0eaca;
+  margin-left: 8px;
+}
+.tag-font {
+  left: 1px;
+  top: 126px;
+  transform: rotate(-2deg);
+}
+.tag-spacing {
+  right: 0;
+  top: 270px;
+  transform: rotate(3deg);
+}
+.spacing-icon {
+  font-size: 19px;
+  color: var(--lime);
+  line-height: 15px;
+}
+.visual-stamp {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  top: 328px;
+  left: 95px;
+  border: 1px solid #5c734738;
+  border-radius: 50%;
+  background: #1d291f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #c7e38e;
+  gap: 6px;
+  transform: rotate(-12deg);
+  box-shadow:
+    0 0 0 5px #18211a,
+    0 0 0 6px #4d61412b;
+}
+.visual-stamp span {
+  font-size: 6.5px;
+  letter-spacing: 1.6px;
+}
+.visual-axis {
+  position: absolute;
+  left: 39px;
+  right: 9px;
+  bottom: 0;
+  border-bottom: 1px solid #41513769;
+  padding-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #617454;
+  font-size: 6px;
+  letter-spacing: 1.6px;
+}

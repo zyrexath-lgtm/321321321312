@@ -1,0 +1,1413 @@
+@media (min-width: 1600px) {
+  .empty-workspace {
+    padding-top: 86px;
+  }
+  .hero-copy h1 {
+    font-size: 68px;
+  }
+  .document-visual {
+    margin-left: 20px;
+  }
+  .site-header {
+    height: 120px;
+  }
+  .hero-description {
+    margin-bottom: 42px;
+  }
+}
+@media (max-width: 1200px) {
+  .shell {
+    width: calc(100% - 72px);
+  }
+  .site-header {
+    gap: 28px;
+  }
+  .hero-copy h1 {
+    font-size: 5vw;
+    letter-spacing: -3.4px;
+  }
+  .hero-copy h1 em {
+    letter-spacing: -2.8px;
+  }
+  .empty-workspace {
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    column-gap: 20px;
+  }
+  .document-visual {
+    transform: scale(0.9);
+    transform-origin: 30% 30%;
+    height: 430px;
+    margin-top: 10px;
+  }
+  .visual-topline {
+    left: 10px;
+  }
+  .main-paper {
+    left: 47px;
+  }
+  .paper-back {
+    left: 69px;
+  }
+  .tag-font {
+    left: -15px;
+  }
+  .tag-spacing {
+    right: -20px;
+  }
+  .visual-stamp {
+    left: 68px;
+  }
+  .document-orbit {
+    left: 0;
+  }
+  .trust-tag {
+    display: none;
+  }
+  .upload-target {
+    padding: 28px 23px;
+    gap: 19px;
+  }
+  .upload-title {
+    font-size: 15px;
+  }
+  .upload-bottom {
+    font-size: 6.5px;
+    letter-spacing: 1px;
+  }
+  .below-upload {
+    font-size: 8px;
+  }
+  .sample-button {
+    font-size: 8px;
+  }
+  .checks-section,
+  .faq-section {
+    gap: 55px;
+  }
+  .report-summary {
+    gap: 20px;
+  }
+  .report-intro h1 {
+    font-size: 34px;
+  }
+  .score-summary {
+    gap: 15px;
+  }
+  .score-summary > div:last-child {
+    max-width: 125px;
+  }
+  .score-summary strong {
+    font-size: 11px;
+  }
+  .score-ring {
+    width: 105px;
+    height: 105px;
+  }
+  .score-ring strong {
+    font-size: 33px;
+  }
+  .report-body {
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 30px;
+  }
+  .issue-card {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .issue-comparison {
+    gap: 7px;
+    padding: 10px 8px;
+  }
+  .issue-title-line {
+    gap: 4px;
+  }
+  .issue-title-line h3 {
+    font-size: 11px;
+  }
+  .issue-comparison p {
+    font-size: 9px;
+  }
+  .report-actionbar > div:first-child > div > span {
+    max-width: 260px;
+    display: block;
+    line-height: 1.7;
+  }
+  .privacy-label {
+    display: none;
+  }
+}
+@media (max-width: 960px) {
+  .shell {
+    width: calc(100% - 56px);
+  }
+  .site-header {
+    height: 92px;
+  }
+  .site-header nav {
+    gap: 20px;
+    font-size: 10px;
+  }
+  .settings-trigger {
+    font-size: 9px;
+    padding: 0 12px;
+  }
+  .brand-name {
+    font-size: 20px;
+  }
+  .brand-symbol {
+    width: 35px;
+    height: 35px;
+    font-size: 32px;
+    line-height: 28px;
+  }
+  .brand-name > span {
+    font-size: 5.8px;
+  }
+  .empty-workspace {
+    padding-top: 52px;
+    column-gap: 4px;
+    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  }
+  .hero-copy h1 {
+    font-size: 5.25vw;
+    letter-spacing: -2.8px;
+  }
+  .hero-copy h1 em {
+    letter-spacing: -2.2px;
+  }
+  .hero-description {
+    font-size: 11px;
+    line-height: 1.85;
+  }
+  .hero-eyebrow {
+    font-size: 7px;
+  }
+  .document-visual {
+    transform: scale(0.74);
+    height: 360px;
+    transform-origin: 15% 0;
+    margin-top: 27px;
+  }
+  .main-paper {
+    left: 18px;
+  }
+  .paper-back {
+    left: 38px;
+  }
+  .visual-tag {
+    font-size: 8px;
+  }
+  .tag-font {
+    left: -25px;
+    top: 123px;
+  }
+  .tag-spacing {
+    right: -88px;
+    top: 270px;
+  }
+  .visual-axis {
+    right: -55px;
+    bottom: -65px;
+  }
+  .visual-topline {
+    right: -45px;
+    left: 0;
+  }
+  .visual-stamp {
+    left: 20px;
+  }
+  .upload-target {
+    padding: 24px 18px;
+    gap: 16px;
+    min-height: 125px;
+  }
+  .upload-icon {
+    width: 40px;
+    height: 49px;
+  }
+  .upload-icon > svg {
+    width: 21px;
+  }
+  .upload-title {
+    font-size: 14px;
+  }
+  .upload-title > span {
+    font-size: 11px;
+  }
+  .upload-arrow {
+    height: 29px;
+    width: 29px;
+  }
+  .upload-arrow > svg {
+    width: 17px;
+  }
+  .upload-bottom {
+    padding: 0 17px;
+    font-size: 5.6px;
+    letter-spacing: 0.65px;
+  }
+  .upload-bottom > span {
+    gap: 6px;
+  }
+  .upload-bottom svg {
+    width: 10px;
+  }
+  .below-upload {
+    flex-wrap: wrap;
+    row-gap: 7px;
+  }
+  .workspace-footnote {
+    margin-top: 37px;
+  }
+  .trust-strip {
+    padding-top: 22px;
+    padding-bottom: 22px;
+    gap: 16px;
+  }
+  .trust-strip > div {
+    gap: 8px;
+    font-size: 8px;
+  }
+  .trust-strip > div svg {
+    width: 16px;
+  }
+  .section-intro h2 {
+    font-size: 31px;
+  }
+  .checks-section {
+    padding-top: 65px;
+    padding-bottom: 60px;
+    gap: 45px;
+  }
+  .checks-list h3 {
+    font-size: 12px;
+  }
+  .checks-list p {
+    font-size: 10px;
+  }
+  .privacy-section {
+    padding: 32px 27px;
+    gap: 27px;
+  }
+  .privacy-section h2 {
+    font-size: 21px;
+  }
+  .privacy-section p {
+    font-size: 10px;
+  }
+  .faq-section {
+    padding: 65px 0;
+    gap: 40px;
+  }
+  .faq-section h2 {
+    font-size: 26px;
+  }
+  .faq-list summary {
+    font-size: 11px;
+  }
+  .site-footer > span {
+    font-size: 8px;
+  }
+  .footer-brand {
+    gap: 16px;
+  }
+  .footer-brand span {
+    font-size: 14px;
+  }
+  .report-intro h1 {
+    font-size: 30px;
+  }
+  .report-intro p {
+    font-size: 11px;
+    max-width: 395px;
+  }
+  .score-summary > div:last-child {
+    display: none;
+  }
+  .score-ring {
+    height: 100px;
+    width: 100px;
+  }
+  .report-stats {
+    gap: 15px;
+    font-size: 8px;
+  }
+  .report-stats > button {
+    font-size: 8px;
+    gap: 6px;
+  }
+  .report-body {
+    grid-template-columns: 183px minmax(0, 1fr);
+    gap: 22px;
+  }
+  .category-button {
+    padding: 12px 9px;
+    gap: 8px;
+    font-size: 9px;
+  }
+  .category-button svg {
+    width: 15px;
+  }
+  .category-caption {
+    font-size: 6px;
+    letter-spacing: 1.1px;
+    margin-left: 9px;
+    margin-right: 9px;
+  }
+  .issues-toolbar > div {
+    display: block;
+  }
+  .issues-toolbar > div > span {
+    display: none;
+  }
+  .issues-toolbar h2 {
+    font-size: 16px;
+  }
+  .issue-list {
+    grid-template-columns: 1fr;
+  }
+  .issue-title-line {
+    flex-wrap: nowrap;
+  }
+  .issue-title-line h3 {
+    font-size: 12px;
+  }
+  .issue-comparison p {
+    font-size: 10px;
+  }
+  .issue-copy p {
+    font-size: 10px;
+  }
+  .issue-comparison {
+    padding: 12px;
+    gap: 14px;
+  }
+  .issue-comparison > div > span {
+    font-size: 6px;
+  }
+  .issue-bottom {
+    font-size: 8px;
+  }
+  .issue-fix {
+    font-size: 10px;
+  }
+  .report-actionbar {
+    padding: 15px 16px;
+    gap: 14px;
+  }
+  .actionbar-icon {
+    display: none;
+  }
+  .report-actionbar > div:first-child > div > span {
+    font-size: 7px;
+    max-width: 210px;
+  }
+  .report-actionbar strong {
+    font-size: 10px;
+  }
+  .report-actionbar .button {
+    padding: 0 15px;
+    font-size: 10px;
+  }
+  .history-list {
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .history-item:nth-child(3) {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .shell {
+    width: calc(100% - 40px);
+  }
+  .site-header {
+    height: 83px;
+    gap: 20px;
+  }
+  .site-header nav {
+    display: none;
+  }
+  .settings-trigger {
+    margin-left: auto;
+    height: 37px;
+    border-radius: 4px;
+    font-size: 10px;
+    gap: 7px;
+  }
+  .settings-trigger > span:first-of-type {
+    display: none;
+  }
+  .settings-trigger .settings-short {
+    display: inline;
+  }
+  .brand {
+    gap: 10px;
+  }
+  .brand-symbol {
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+    line-height: 26px;
+  }
+  .brand-name {
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
+  .brand-name > span {
+    font-size: 5.3px;
+    letter-spacing: 0.8px;
+    margin-top: 6px;
+  }
+  .empty-workspace {
+    display: block;
+    padding-top: 43px;
+    padding-bottom: 24px;
+  }
+  .hero-eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.15px;
+    margin-bottom: 24px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(32px, 6.25vw, 43px);
+    letter-spacing: -1.8px;
+    line-height: 1.2;
+    margin-bottom: 19px;
+  }
+  .hero-copy h1 em {
+    font-size: 1.04em;
+    letter-spacing: -1.5px;
+  }
+  .hero-description {
+    font-size: 11px;
+    line-height: 1.9;
+    margin-bottom: 26px;
+  }
+  .document-visual {
+    display: none;
+  }
+  .upload-target {
+    min-height: 147px;
+    padding: 25px 20px;
+    gap: 17px;
+  }
+  .upload-icon {
+    height: 54px;
+    width: 44px;
+  }
+  .upload-icon > svg {
+    width: 24px;
+  }
+  .upload-title {
+    font-size: 15px;
+    line-height: 1.55;
+    letter-spacing: -0.4px;
+  }
+  .upload-title > span {
+    font-size: 11px;
+    margin-top: 7px;
+  }
+  .upload-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  .upload-bottom {
+    height: 38px;
+    font-size: 6px;
+    letter-spacing: 0.6px;
+    padding: 0 17px;
+  }
+  .upload-bottom > span {
+    gap: 6px;
+  }
+  .upload-bottom svg {
+    width: 11px;
+  }
+  .below-upload {
+    font-size: 8px;
+    gap: 13px;
+    justify-content: center;
+    margin-top: 16px;
+    flex-wrap: nowrap;
+  }
+  .below-upload > span {
+    font-size: 7px;
+    letter-spacing: -0.05px;
+  }
+  .sample-button {
+    font-size: 7px;
+    gap: 4px;
+  }
+  .sample-button svg {
+    width: 12px;
+  }
+  .workspace-footnote {
+    margin-top: 27px;
+    gap: 12px;
+    font-size: 9px;
+  }
+  .bracket-icon {
+    font-size: 27px;
+  }
+  .footnote-index {
+    font-size: 16px;
+    gap: 8px;
+  }
+  .footnote-index > span {
+    font-size: 5px;
+    width: 75px;
+    letter-spacing: 0.6px;
+  }
+  .trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px 22px;
+    padding: 21px 0;
+  }
+  .trust-strip > div {
+    font-size: 8px;
+    gap: 8px;
+  }
+  .trust-strip > div:last-of-type {
+    display: none;
+  }
+  .trust-strip > div svg {
+    width: 16px;
+  }
+  .checks-section {
+    display: block;
+    padding: 46px 0 45px;
+  }
+  .section-intro .eyebrow,
+  .privacy-section .eyebrow,
+  .faq-section .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.3px;
+  }
+  .section-intro h2 {
+    font-size: 30px;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    margin-top: 17px;
+    margin-bottom: 14px;
+  }
+  .section-intro p {
+    font-size: 11px;
+    max-width: 260px;
+    line-height: 1.85;
+  }
+  .checks-list {
+    margin-top: 34px;
+  }
+  .checks-list > div {
+    grid-template-columns: 22px 1fr 17px;
+    gap: 7px 12px;
+    padding: 22px 0;
+  }
+  .checks-list h3 {
+    font-size: 12px;
+  }
+  .checks-list p {
+    font-size: 10px;
+    line-height: 1.9;
+  }
+  .checks-list > div > span {
+    font-size: 8px;
+  }
+  .checks-list svg {
+    width: 17px;
+  }
+  .privacy-section {
+    display: block;
+    padding: 26px 24px;
+    border-radius: 6px;
+  }
+  .privacy-symbol {
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 0 0 5px #36482a20;
+    margin-bottom: 23px;
+  }
+  .privacy-symbol svg {
+    width: 23px;
+  }
+  .privacy-section h2 {
+    font-size: 21px;
+    letter-spacing: -0.55px;
+    line-height: 1.45;
+    margin-top: 13px;
+  }
+  .privacy-section p {
+    font-size: 10px;
+    line-height: 1.9;
+    max-width: 100%;
+  }
+  .faq-section {
+    display: block;
+    padding: 47px 0;
+  }
+  .faq-section h2 {
+    font-size: 26px;
+    margin-top: 17px;
+    margin-bottom: 31px;
+  }
+  .faq-list summary {
+    font-size: 11px;
+    padding: 19px 0;
+    line-height: 1.7;
+    gap: 15px;
+  }
+  .faq-list details p {
+    font-size: 10px;
+  }
+  .site-footer {
+    flex-wrap: wrap;
+    gap: 23px 15px;
+    padding: 27px 0;
+    font-size: 8px;
+  }
+  .footer-brand {
+    font-size: 13px;
+    gap: 16px;
+  }
+  .footer-brand span {
+    font-size: 13px;
+  }
+  .site-footer > span {
+    order: 3;
+    width: 100%;
+    font-size: 8px;
+  }
+  .site-footer > a:last-child {
+    font-size: 8px;
+    margin-left: auto;
+  }
+  .site-footer > a:last-child svg {
+    width: 13px;
+  }
+  .active-workspace {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  .tool-topline {
+    margin-bottom: 23px;
+    gap: 8px;
+  }
+  .tool-topline > .eyebrow {
+    font-size: 6px;
+    letter-spacing: 1px;
+    gap: 7px;
+  }
+  .tool-topline .text-button {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .tool-topline .text-button > svg {
+    width: 14px;
+  }
+  .report-summary {
+    align-items: flex-start;
+    padding: 12px 0 23px;
+    gap: 12px;
+  }
+  .report-intro > .eyebrow {
+    font-size: 6px;
+    letter-spacing: 1px;
+    gap: 5px;
+  }
+  .report-intro h1 {
+    font-size: 27px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin: 15px 0 13px;
+  }
+  .report-intro p {
+    font-size: 10px;
+    line-height: 1.85;
+    max-width: none;
+    margin-bottom: 17px;
+  }
+  .report-file {
+    font-size: 8px;
+    gap: 7px;
+  }
+  .report-file > svg {
+    width: 13px;
+  }
+  .report-file > span:first-of-type {
+    max-width: 180px;
+  }
+  .report-file > span:last-child {
+    font-size: 7px;
+    padding-left: 7px;
+  }
+  .score-summary {
+    padding-top: 24px;
+  }
+  .score-ring {
+    width: 73px;
+    height: 73px;
+  }
+  .score-ring strong {
+    font-size: 25px;
+    letter-spacing: -1px;
+  }
+  .score-ring span {
+    font-size: 5px;
+    letter-spacing: 0.8px;
+  }
+  .score-ring circle {
+    stroke-width: 4;
+  }
+  .score-ring > div {
+    gap: 3px;
+  }
+  .report-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px 8px;
+    padding: 15px 0;
+    font-size: 8px;
+  }
+  .report-stats > span {
+    white-space: nowrap;
+  }
+  .report-stats > button {
+    grid-column: 1/-1;
+    justify-self: start;
+    margin-left: 0;
+    border-top: 1px solid #3c512a38;
+    width: 100%;
+    padding-top: 12px;
+    font-size: 8px;
+  }
+  .report-stats > button > svg:last-child {
+    margin-left: auto;
+  }
+  .report-body {
+    display: block;
+    margin-top: 22px;
+  }
+  .category-caption {
+    display: none;
+  }
+  .category-sidebar {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #58723b33 transparent;
+    padding-bottom: 12px;
+    overscroll-behavior-x: contain;
+  }
+  .category-button {
+    width: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 9px;
+    padding: 10px 12px;
+    margin: 0;
+    gap: 7px;
+    border: 1px solid #3c512942;
+  }
+  .category-button svg {
+    height: 14px;
+    width: 14px;
+  }
+  .category-button > b {
+    font-size: 8px;
+    min-width: 14px;
+  }
+  .category-check {
+    width: 11px !important;
+  }
+  .safe-note {
+    display: none;
+  }
+  .issues-toolbar {
+    height: 42px;
+    margin: 10px 0 13px;
+    align-items: center;
+  }
+  .issues-toolbar h2 {
+    font-size: 17px;
+    margin: 0;
+  }
+  .issues-toolbar .text-button {
+    font-size: 9px;
+    margin: 0;
+  }
+  .issue-list {
+    gap: 12px;
+  }
+  .issue-card {
+    padding: 18px 16px 0;
+    border-radius: 5px;
+  }
+  .issue-checkbox {
+    width: 16px;
+    height: 16px;
+  }
+  .issue-checkbox > span {
+    width: 16px;
+    height: 16px;
+  }
+  .issue-title-line h3 {
+    font-size: 12px;
+  }
+  .issue-count {
+    font-size: 7px;
+    padding: 4px 6px;
+  }
+  .issue-copy p {
+    font-size: 10px;
+    line-height: 1.8;
+    margin-bottom: 17px;
+  }
+  .issue-comparison {
+    padding: 12px;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .issue-comparison > div > span {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+  .issue-comparison p {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+  .issue-bottom {
+    font-size: 7px;
+    padding: 12px 0;
+  }
+  .issue-fix {
+    font-size: 10px;
+    min-height: 28px;
+    padding: 4px 0;
+  }
+  .report-warnings {
+    font-size: 9px;
+    margin-top: 16px;
+  }
+  .report-warnings summary {
+    padding: 14px 12px;
+    gap: 7px;
+    font-size: 9px;
+  }
+  .report-warnings summary > svg {
+    width: 14px;
+  }
+  .report-warnings ul {
+    font-size: 9px;
+    line-height: 1.9;
+    padding-left: 29px;
+    padding-right: 20px;
+  }
+  .report-actionbar {
+    bottom: 9px;
+    display: block;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+    box-shadow: 0 5px 30px #0005;
+  }
+  .report-actionbar > div:first-child {
+    display: block;
+    margin-bottom: 13px;
+  }
+  .report-actionbar strong {
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+  .report-actionbar > div:first-child > div > span {
+    font-size: 8px;
+    max-width: 100%;
+  }
+  .actionbar-buttons {
+    width: 100%;
+    gap: 9px;
+  }
+  .report-actionbar .button {
+    height: 44px;
+    min-width: 0;
+    flex: 1;
+    font-size: 11px;
+    padding: 0 13px;
+  }
+  .report-actionbar .button.secondary {
+    flex: 0 1 auto;
+  }
+  .button-count {
+    height: 21px;
+    min-width: 21px;
+    font-size: 9px;
+  }
+  .completion-banner {
+    padding: 19px 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .completion-mark {
+    height: 34px;
+    width: 34px;
+  }
+  .completion-mark svg {
+    width: 20px;
+  }
+  .completion-banner > div:nth-child(2) {
+    flex: 1;
+  }
+  .completion-banner h2 {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .completion-banner p {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+  .completion-banner .button {
+    width: 100%;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+  .completion-banner .button > svg {
+    width: 17px;
+  }
+  .no-issues {
+    padding: 36px 20px;
+  }
+  .no-issues h3 {
+    font-size: 22px;
+  }
+  .no-issues p {
+    font-size: 10px;
+  }
+  .processing-panel {
+    min-height: 474px;
+    padding: 30px 20px;
+  }
+  .processing-panel h1 {
+    font-size: 29px;
+    letter-spacing: -0.9px;
+    margin: 19px 0 14px;
+  }
+  .processing-panel > .eyebrow {
+    font-size: 6px;
+    letter-spacing: 1.4px;
+  }
+  .processing-panel > p {
+    font-size: 10px;
+    max-width: 100%;
+    line-height: 1.9;
+  }
+  .processing-file {
+    font-size: 8px;
+    width: 100%;
+    justify-content: center;
+    gap: 7px;
+  }
+  .processing-file > span:first-of-type {
+    max-width: 190px;
+  }
+  .processing-file > span:last-child {
+    font-size: 7px;
+  }
+  .processing-note {
+    font-size: 7px;
+    margin-top: 16px;
+  }
+  .processing-note svg {
+    width: 11px;
+  }
+  .processing-bar {
+    width: 200px;
+  }
+  .dialog-backdrop {
+    align-items: flex-end;
+  }
+  .profile-dialog {
+    border-left: 0;
+    border-top: 1px solid #637e466b;
+    height: auto;
+    max-height: 94dvh;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    padding: 20px 24px 24px;
+    animation: sheet-enter 0.3s ease;
+    overscroll-behavior: contain;
+  }
+  .profile-dialog:before {
+    content: "";
+    display: block;
+    width: 34px;
+    height: 3px;
+    background: #526745;
+    border-radius: 2px;
+    margin: -10px auto 17px;
+  }
+  .profile-dialog h2 {
+    font-size: 30px;
+    margin-top: 22px;
+  }
+  .dialog-description {
+    font-size: 10px;
+    line-height: 1.8;
+    margin-bottom: 21px;
+  }
+  .dialog-heading .eyebrow {
+    font-size: 7px;
+  }
+  .dialog-heading .icon-button {
+    min-width: 34px;
+    min-height: 34px;
+  }
+  .form-section {
+    margin-top: 21px;
+    padding-top: 18px;
+    margin-bottom: 16px;
+  }
+  .form-section h3 {
+    font-size: 11px;
+  }
+  .field {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .field input,
+  .field select {
+    height: 43px;
+    font-size: 11px;
+  }
+  .field-grid {
+    gap: 15px;
+    margin-bottom: 19px;
+  }
+  .margins-layout {
+    grid-template-columns: 80px 1fr;
+    gap: 25px;
+  }
+  .margin-preview {
+    width: 77px;
+    height: 105px;
+  }
+  .margin-fields {
+    gap: 12px;
+  }
+  .margin-fields .field input {
+    height: 38px;
+  }
+  .profile-note {
+    font-size: 9px;
+    padding: 12px;
+    margin: 22px 0;
+  }
+  .dialog-actions {
+    padding-top: 16px;
+    margin-top: 19px;
+  }
+  .dialog-actions .button {
+    height: 44px;
+    font-size: 11px;
+  }
+  .dialog-actions .text-button {
+    font-size: 10px;
+  }
+  .history-section {
+    margin-top: 25px;
+    padding-bottom: 19px;
+  }
+  .history-heading .eyebrow {
+    font-size: 6px;
+    letter-spacing: 0.9px;
+  }
+  .history-heading button {
+    font-size: 8px;
+  }
+  .history-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .history-item {
+    padding: 13px;
+  }
+  .history-item:nth-child(3) {
+    display: flex;
+  }
+  .history-item > span {
+    font-size: 10px;
+  }
+  .history-item small {
+    font-size: 7px;
+  }
+  .history-item > b {
+    font-size: 19px;
+  }
+  .toast {
+    bottom: 17px;
+    font-size: 10px;
+    padding: 12px 13px;
+    gap: 8px;
+    line-height: 1.7;
+    width: calc(100% - 32px);
+  }
+  .toast .icon-button {
+    margin-left: auto;
+  }
+}
+@media (max-width: 380px) {
+  .shell {
+    width: calc(100% - 32px);
+  }
+  .hero-copy h1 {
+    font-size: 6.2vw;
+    letter-spacing: -1.7px;
+  }
+  .hero-copy h1 em {
+    letter-spacing: -1.4px;
+  }
+  .hero-description {
+    font-size: 10px;
+  }
+  .hero-eyebrow {
+    font-size: 6px;
+  }
+  .upload-target {
+    gap: 13px;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 137px;
+  }
+  .upload-title {
+    font-size: 13px;
+    letter-spacing: -0.4px;
+  }
+  .upload-title > span {
+    font-size: 10px;
+  }
+  .upload-icon {
+    height: 49px;
+    width: 39px;
+  }
+  .upload-arrow {
+    width: 26px;
+    height: 26px;
+  }
+  .upload-bottom {
+    font-size: 5.5px;
+    letter-spacing: 0.4px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .below-upload {
+    gap: 8px;
+  }
+  .below-upload > span,
+  .sample-button {
+    font-size: 6px;
+  }
+  .footnote-index {
+    display: none;
+  }
+  .trust-strip > div {
+    font-size: 7px;
+    gap: 7px;
+  }
+  .report-intro h1 {
+    font-size: 25px;
+  }
+  .report-intro p {
+    font-size: 9px;
+  }
+  .score-ring {
+    width: 66px;
+    height: 66px;
+  }
+  .report-file > span:first-of-type {
+    max-width: 150px;
+  }
+  .report-file > span:last-child {
+    font-size: 6px;
+  }
+  .privacy-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .privacy-section h2 {
+    font-size: 19px;
+  }
+  .profile-dialog {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@keyframes sheet-enter {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .scan-line {
+    top: 50%;
+  }
+  .processing-bar span {
+    left: 30%;
+    width: 40%;
+  }
+}
+
+/* Comfortable touch targets and readable supporting copy on small screens. */
+@media (max-width: 700px) {
+  .settings-trigger {
+    height: 44px;
+  }
+  .below-upload {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3px 10px;
+    margin-top: 11px;
+  }
+  .below-upload > span {
+    font-size: 9px;
+  }
+  .sample-button {
+    min-height: 44px;
+    font-size: 10px;
+    gap: 5px;
+  }
+  .sample-button svg {
+    width: 13px;
+  }
+  .upload-bottom {
+    font-size: 7px;
+    letter-spacing: 0.2px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .hero-description {
+    font-size: 12px;
+  }
+  .tool-topline .text-button {
+    min-height: 44px;
+    font-size: 10px;
+  }
+  .category-button {
+    min-height: 44px;
+    font-size: 10px;
+  }
+  .issues-toolbar .text-button {
+    min-height: 44px;
+    font-size: 10px;
+  }
+  .issue-fix {
+    min-height: 44px;
+    font-size: 11px;
+  }
+  .issue-copy p {
+    font-size: 11px;
+  }
+  .issue-comparison p {
+    font-size: 11px;
+  }
+  .issue-bottom {
+    font-size: 8px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .report-intro p {
+    font-size: 11px;
+  }
+  .faq-list summary {
+    min-height: 54px;
+    font-size: 12px;
+  }
+  .faq-list details p,
+  .privacy-section p,
+  .checks-list p {
+    font-size: 11px;
+  }
+  .profile-dialog .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .field {
+    font-size: 10px;
+  }
+  .field input,
+  .field select {
+    min-height: 44px;
+  }
+  .margin-fields .field input {
+    min-height: 44px;
+  }
+  .history-heading button {
+    min-height: 44px;
+  }
+  .site-footer > a:last-child {
+    min-height: 44px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 380px) {
+  .upload-bottom {
+    font-size: 6px;
+    letter-spacing: 0.1px;
+  }
+  .below-upload {
+    justify-content: center;
+    gap: 0 12px;
+  }
+  .below-upload > span {
+    font-size: 8px;
+  }
+  .sample-button {
+    font-size: 9px;
+  }
+}
+
+.category-neutral {
+  margin-left: auto;
+  color: #819274;
+  font-size: 12px;
+}
+.coverage-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: #91a481;
+  font-size: 9px;
+  line-height: 1.8;
+  margin: 13px 0 0;
+}
+.coverage-note svg {
+  margin-top: 2px;
+}
+.score-caption {
+  max-width: 150px;
+  line-height: 1.8;
+}
+@media (max-width: 700px) {
+  .coverage-note {
+    font-size: 9px;
+    line-height: 1.9;
+    margin-top: 13px;
+  }
+  .no-issues h3 {
+    font-size: 20px;
+  }
+  .no-issues p {
+    font-size: 11px;
+  }
+}

@@ -18,10 +18,14 @@ export interface ParagraphFormat {
   numbering?: string;
   outline?: number;
   bidi?: boolean;
+  snapToGrid?: boolean;
 }
 export interface RunFormat {
   font?: string;
   size?: number;
+  verticalAlign?: string;
+  position?: number;
+  complexScript?: boolean;
 }
 interface FontState {
   ascii?: string;
@@ -41,6 +45,7 @@ export class StyleResolver {
   private defaultP?: XmlElement;
   private themeFonts: Record<string, string> = {};
   private chains = new Map<string, XmlElement[]>();
+  private unresolved = new Set<string>();
 
   constructor(styles?: XmlDocument, theme?: XmlDocument) {
     if (styles?.documentElement) {
@@ -83,10 +88,15 @@ export class StyleResolver {
     while (current && !visited.has(current) && chain.length < 40) {
       visited.add(current);
       const style = this.styles.get(current);
-      if (!style) break;
+      if (!style) {
+        this.unresolved.add(id);
+        break;
+      }
       chain.unshift(style);
       current = attr(child(style, "basedOn"), "val");
     }
+    if (current && (visited.has(current) || chain.length >= 40))
+      this.unresolved.add(id);
     this.chains.set(id, chain);
     return chain;
   }
@@ -99,7 +109,27 @@ export class StyleResolver {
 
   styleName(p: XmlElement): string {
     const id = this.styleId(p);
-    return `${id || ""} ${attr(child(id ? this.styles.get(id) : undefined, "name"), "val") || ""}`;
+    return [
+      id || "",
+      ...this.chain(id).flatMap((style) => [
+        attr(style, "styleId") || "",
+        attr(child(style, "name"), "val") || "",
+      ]),
+    ].join(" ");
+  }
+
+  /** Missing/cyclic style inheritance has no reliably computable effective value. */
+  hasUnresolvedStyles(p: XmlElement): boolean {
+    const ids = [
+      this.styleId(p),
+      ...descendants(p, "r").map((run) =>
+        attr(child(child(run, "rPr"), "rStyle"), "val"),
+      ),
+    ];
+    return ids.some((id) => {
+      this.chain(id);
+      return !!id && this.unresolved.has(id);
+    });
   }
 
   paragraph(p: XmlElement, includeDirect = true): ParagraphFormat {
@@ -136,6 +166,11 @@ export class StyleResolver {
       const bidi = child(layer, "bidi");
       if (bidi)
         out.bidi = !["0", "false", "off"].includes(attr(bidi, "val") || "true");
+      const snap = child(layer, "snapToGrid");
+      if (snap)
+        out.snapToGrid = !["0", "false", "off"].includes(
+          attr(snap, "val") || "true",
+        );
     }
     return out;
   }
@@ -143,6 +178,8 @@ export class StyleResolver {
   run(p: XmlElement, run: XmlElement): RunFormat {
     const font: FontState = {};
     let size: number | undefined;
+    let verticalAlign: string | undefined, position: number | undefined;
+    const scriptFlags: Record<string, boolean> = {};
     const rStyle = attr(child(child(run, "rPr"), "rStyle"), "val");
     const layers = [
       this.defaultRun,
@@ -172,6 +209,17 @@ export class StyleResolver {
       }
       const value = numberAttr(child(layer, "sz"), "val");
       if (value !== undefined) size = value / 2;
+      const vertical = attr(child(layer, "vertAlign"), "val");
+      if (vertical !== undefined) verticalAlign = vertical;
+      const offset = numberAttr(child(layer, "position"), "val");
+      if (offset !== undefined) position = offset;
+      for (const key of ["rtl", "cs"]) {
+        const property = child(layer, key);
+        if (property)
+          scriptFlags[key] = !["0", "false", "off"].includes(
+            attr(property, "val") || "true",
+          );
+      }
     }
     const ascii = font.asciiTheme
       ? this.themeFonts[font.asciiTheme]
@@ -185,7 +233,13 @@ export class StyleResolver {
         hAnsi || "Шрифт по умолчанию Word",
       ]),
     ];
-    return { font: fonts.join(" / "), size };
+    return {
+      font: fonts.join(" / "),
+      size,
+      verticalAlign,
+      position,
+      complexScript: Object.values(scriptFlags).some(Boolean),
+    };
   }
 }
 
@@ -206,8 +260,8 @@ export function hasComplexContent(p: XmlElement): boolean {
     "sdt",
     "altChunk",
     "hyperlinkChange",
-    "rtl",
-    "cs",
+    "framePr",
+    "textDirection",
   ]);
   return (
     descendants(p).some(

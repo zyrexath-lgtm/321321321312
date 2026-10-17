@@ -9,7 +9,10 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:compatibility": "vitest run tests/corpus.test.ts && python3 tests/compatibility/check.py --libreoffice",
+    "benchmark:fixtures": "python3 scripts/generate-performance-fixtures.py",
+    "benchmark:browser": "node scripts/benchmark-browser.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",
@@ -28,7 +31,7 @@
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.9.3",
     "vite": "^7.1.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.12"
   },
   "engines": {
     "node": ">=22.12.0"

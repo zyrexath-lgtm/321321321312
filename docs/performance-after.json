@@ -1,0 +1,333 @@
+{
+  "url": "http://127.0.0.1:4173",
+  "date": "2026-10-17T20:21:24.651Z",
+  "node": "v24.19.0",
+  "runs": 3,
+  "method": "1000 paragraphs + valid incompressible PNG; worker round-trip and input/click-to-result; 16ms UI heartbeat; 40ms Linux Chromium process-tree RSS proxy; fresh browser per run",
+  "results": [
+    {
+      "targetMiB": 1,
+      "bytes": 1035966,
+      "repetition": 1,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 253.10000000009313,
+          "userElapsedMs": 268.79999999981374,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 525.1999999997206,
+          "userElapsedMs": 527.5,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 28.800000000279397,
+        "fix": 32.60000000009313
+      },
+      "rssIdleMiB": 598.640625,
+      "rssPeakMiB": 689.9765625,
+      "rssIncreaseMiB": 91.3359375,
+      "rssSamples": 39
+    },
+    {
+      "targetMiB": 1,
+      "bytes": 1035966,
+      "repetition": 2,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 219.3000000002794,
+          "userElapsedMs": 242,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 562.2000000001863,
+          "userElapsedMs": 563.6000000000931,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 23.800000000279397,
+        "fix": 26.200000000186265
+      },
+      "rssIdleMiB": 581.26171875,
+      "rssPeakMiB": 685.25,
+      "rssIncreaseMiB": 103.98828125,
+      "rssSamples": 36
+    },
+    {
+      "targetMiB": 1,
+      "bytes": 1035966,
+      "repetition": 3,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 205.10000000009313,
+          "userElapsedMs": 221.89999999990687,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 424.59999999962747,
+          "userElapsedMs": 425.5,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 30.899999999906868,
+        "fix": 28.700000000186265
+      },
+      "rssIdleMiB": 584.5390625,
+      "rssPeakMiB": 688.3828125,
+      "rssIncreaseMiB": 103.84375,
+      "rssSamples": 40
+    },
+    {
+      "targetMiB": 5,
+      "bytes": 5232014,
+      "repetition": 1,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 225.39999999990687,
+          "userElapsedMs": 264.1999999997206,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 559.8000000002794,
+          "userElapsedMs": 562.8000000002794,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 22.299999999813735,
+        "fix": 32.6999999997206
+      },
+      "rssIdleMiB": 585.5625,
+      "rssPeakMiB": 710.65234375,
+      "rssIncreaseMiB": 125.08984375,
+      "rssSamples": 54
+    },
+    {
+      "targetMiB": 5,
+      "bytes": 5232014,
+      "repetition": 2,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 214,
+          "userElapsedMs": 247.39999999990687,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 595,
+          "userElapsedMs": 602.6999999997206,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 22.600000000093132,
+        "fix": 35.10000000009313
+      },
+      "rssIdleMiB": 572.23046875,
+      "rssPeakMiB": 712.078125,
+      "rssIncreaseMiB": 139.84765625,
+      "rssSamples": 53
+    },
+    {
+      "targetMiB": 5,
+      "bytes": 5232014,
+      "repetition": 3,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 245.20000000018626,
+          "userElapsedMs": 277.10000000009313,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 547.7999999998137,
+          "userElapsedMs": 550.6999999997206,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 26.699999999720603,
+        "fix": 24.200000000186265
+      },
+      "rssIdleMiB": 597.13671875,
+      "rssPeakMiB": 712.1875,
+      "rssIncreaseMiB": 115.05078125,
+      "rssSamples": 47
+    },
+    {
+      "targetMiB": 10,
+      "bytes": 10479539,
+      "repetition": 1,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 247.39999999990687,
+          "userElapsedMs": 295.79999999981374,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 563.8999999999069,
+          "userElapsedMs": 571.3000000002794,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 30.600000000093132,
+        "fix": 20.699999999720603
+      },
+      "rssIdleMiB": 586.89453125,
+      "rssPeakMiB": 728.59375,
+      "rssIncreaseMiB": 141.69921875,
+      "rssSamples": 82
+    },
+    {
+      "targetMiB": 10,
+      "bytes": 10479539,
+      "repetition": 2,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 241.29999999981374,
+          "userElapsedMs": 293.89999999990687,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 606.3000000002794,
+          "userElapsedMs": 611.6000000000931,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 24.100000000093132,
+        "fix": 20.399999999906868
+      },
+      "rssIdleMiB": 570.05859375,
+      "rssPeakMiB": 728.10546875,
+      "rssIncreaseMiB": 158.046875,
+      "rssSamples": 92
+    },
+    {
+      "targetMiB": 10,
+      "bytes": 10479539,
+      "repetition": 3,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 242.90000000037253,
+          "userElapsedMs": 283.40000000037253,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 598.6000000000931,
+          "userElapsedMs": 604.3000000002794,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 25.100000000093132,
+        "fix": 29.700000000186265
+      },
+      "rssIdleMiB": 578.26171875,
+      "rssPeakMiB": 732.21875,
+      "rssIncreaseMiB": 153.95703125,
+      "rssSamples": 67
+    },
+    {
+      "targetMiB": 19.9,
+      "bytes": 20866844,
+      "repetition": 1,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 239.6999999997206,
+          "userElapsedMs": 323.79999999981374,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 791,
+          "userElapsedMs": 802.1999999997206,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 38.10000000009313,
+        "fix": 29.100000000093132
+      },
+      "rssIdleMiB": 573.78515625,
+      "rssPeakMiB": 799.78125,
+      "rssIncreaseMiB": 225.99609375,
+      "rssSamples": 107
+    },
+    {
+      "targetMiB": 19.9,
+      "bytes": 20866844,
+      "repetition": 2,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 248,
+          "userElapsedMs": 317,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 611.5,
+          "userElapsedMs": 638.7000000001863,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 53.59999999962747,
+        "fix": 55.799999999813735
+      },
+      "rssIdleMiB": 583.16015625,
+      "rssPeakMiB": 760.6875,
+      "rssIncreaseMiB": 177.52734375,
+      "rssSamples": 165
+    },
+    {
+      "targetMiB": 19.9,
+      "bytes": 20866844,
+      "repetition": 3,
+      "jobs": [
+        {
+          "operation": "analyze",
+          "workerRoundTripMs": 248,
+          "userElapsedMs": 325.5,
+          "error": null
+        },
+        {
+          "operation": "fix",
+          "workerRoundTripMs": 800.7999999998137,
+          "userElapsedMs": 811.7999999998137,
+          "error": null
+        }
+      ],
+      "mainThreadMaxGapMs": {
+        "analyze": 28.09999999962747,
+        "fix": 26.40000000037253
+      },
+      "rssIdleMiB": 585.171875,
+      "rssPeakMiB": 775.9453125,
+      "rssIncreaseMiB": 190.7734375,
+      "rssSamples": 153
+    }
+  ]
+}

@@ -17,6 +17,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Independent ZIP, XML and relationships checks
+        run: python3 tests/compatibility/check.py
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

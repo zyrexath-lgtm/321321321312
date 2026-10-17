@@ -48,26 +48,104 @@ export function evaluateDocument(
   const warnings = [...parsed.warnings];
   const eligible: XmlElement[] = [];
   const complexIndents: XmlElement[] = [];
+  const gridParagraphs: XmlElement[] = [];
+  const uncertainFormatting: XmlElement[] = [];
+  const bibliography: XmlElement[] = [];
   let protectedCount = 0,
     inReferences = false,
     fieldDepth = 0;
   const suspiciousHeadings: XmlElement[] = [];
+  const sections = [
+    ...children(parsed.body, "sectPr"),
+    ...directParagraphs.flatMap((p) => {
+      const section = child(child(p, "pPr"), "sectPr");
+      return section ? [section] : [];
+    }),
+  ];
+  const gridControlled = new Set<XmlElement>();
+  let pendingSection: XmlElement[] = [];
+  const finishSection = (section?: XmlElement) => {
+    const grid = child(section, "docGrid");
+    if (
+      Number(attr(grid, "linePitch") || 0) > 0 &&
+      ["lines", "linesAndChars"].includes(attr(grid, "type") || "default")
+    )
+      for (const p of pendingSection)
+        if (resolver.paragraph(p).snapToGrid !== false) gridControlled.add(p);
+    pendingSection = [];
+  };
   for (const p of directParagraphs) {
+    pendingSection.push(p);
+    const section = child(child(p, "pPr"), "sectPr");
+    if (section) finishSection(section);
+  }
+  finishSection(child(parsed.body, "sectPr"));
+  // A recognizable academic cover followed by an explicit page boundary is a
+  // separate layout, including its ordinary-looking name and institution lines.
+  const academicCover =
+    /^(?:министерство|минобрнауки|федеральное\s+(?:государственное|агентство)|фгбоу|фгаоу|государственное\s+(?:бюджетное|образовательное))/iu;
+  const coverMarker = directParagraphs.slice(0, 6).some((p) => {
+    const text = paragraphText(p).trim();
+    return (
+      academicCover.test(text) ||
+      (text.length <= 180 &&
+        !/[.!?;]\s*$/.test(text) &&
+        /(?:университет|институт|колледж|академия|техникум|курсовая работа|дипломная работа|выпускная квалификационная работа)/iu.test(
+          text,
+        ))
+    );
+  });
+  let coverEnd = -1;
+  if (coverMarker) {
+    for (let i = 0; i < Math.min(80, directParagraphs.length); i++) {
+      const p = directParagraphs[i];
+      // A work title is also common above the first body paragraph. Do not
+      // mistake an entire first section for a cover if body styles start here.
+      if (/body|основн[\p{L}\s]*текст/iu.test(resolver.styleName(p))) break;
+      const pageBefore = child(child(p, "pPr"), "pageBreakBefore");
+      if (
+        i &&
+        pageBefore &&
+        !["0", "false", "off"].includes(attr(pageBefore, "val") || "true")
+      ) {
+        coverEnd = i - 1;
+        break;
+      }
+      const section = child(child(p, "pPr"), "sectPr");
+      if (
+        descendants(p, "br").some((br) => attr(br, "type") === "page") ||
+        (section &&
+          (attr(child(section, "type"), "val") || "nextPage") !== "continuous")
+      ) {
+        coverEnd = i;
+        break;
+      }
+    }
+  }
+  for (
+    let paragraphIndex = 0;
+    paragraphIndex < directParagraphs.length;
+    paragraphIndex++
+  ) {
+    const p = directParagraphs[paragraphIndex];
     const text = paragraphText(p).trim(),
       format = resolver.paragraph(p),
       style = resolver.styleName(p);
+    const normalizedTitle = text.replace(/\s+/g, " ");
     const heading =
       /heading|title|subtitle|заголов|toc|оглав|caption|подпис/i.test(style) ||
       (format.outline !== undefined && format.outline < 9);
     const caption =
       /^(рис(унок|\.)?|таблица|табл\.|figure|table)\s*[\dIVX]/iu.test(text);
-    if (
-      /^(список\s+(использованн\w+\s+)?(литературы|источников)|библиографическ\w+\s+список|references|bibliography)\s*$/iu.test(
-        text.replace(/^\d+[.\s]+/, ""),
-      )
-    )
-      inReferences = true;
+    const referencesHeading =
+      /^(?:список\s+(?:(?:использованн[\p{L}]+|рекомендуем[\p{L}]+)\s+)?(?:литературы|источников)(?:\s+и\s+(?:литературы|источников))?|библиографическ[\p{L}]+\s+список|литература|библиография|references|bibliography)\s*[.:]?$/iu.test(
+        normalizedTitle.replace(/^\d+[.\s]+/, ""),
+      );
+    if (referencesHeading) inReferences = true;
     else if (inReferences && heading) inReferences = false;
+    const referenceParagraph =
+      inReferences || /bibliography|библиограф|литератур/iu.test(style);
+    if (text && referenceParagraph) bibliography.push(p);
     let inField = fieldDepth > 0;
     for (const field of descendants(p, "fldChar")) {
       const kind = attr(field, "fldCharType");
@@ -75,29 +153,79 @@ export function evaluateDocument(
       if (kind === "end") fieldDepth = Math.max(0, fieldDepth - 1);
       inField = true;
     }
+    const unresolvedStyles = resolver.hasUnresolvedStyles(p);
+    const specialFormatting = descendants(p, "r").some((run) => {
+      const effective = resolver.run(p, run);
+      return (
+        (effective.verticalAlign !== undefined &&
+          effective.verticalAlign !== "baseline") ||
+        (effective.position !== undefined && effective.position !== 0) ||
+        effective.complexScript ||
+        /(?:wingdings|webdings|symbol)/iu.test(effective.font || "")
+      );
+    });
+    // Font selection for complex scripts depends on additional OOXML slots,
+    // language and layout settings that this profile deliberately does not edit.
+    const unsupportedScript =
+      /[^\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{Script=Common}\p{Script=Inherited}]/u.test(
+        text,
+      );
+    if (text && (unresolvedStyles || specialFormatting || unsupportedScript))
+      uncertainFormatting.push(p);
     const unsafe =
       hasComplexContent(p) ||
       inField ||
       heading ||
       caption ||
-      inReferences ||
+      referenceParagraph ||
+      unresolvedStyles ||
+      specialFormatting ||
+      unsupportedScript ||
       (format.numbering !== undefined && format.numbering !== "0") ||
       format.bidi === true ||
       /[\p{Script=Arabic}\p{Script=Hebrew}]/u.test(text);
     if (text && unsafe) protectedCount++;
     if (!text || unsafe) continue;
-    const normalizedTitle = text.replace(/\s+/g, " ");
     const commonSectionTitle =
-      /^(введение|заключение|содержание|оглавление|аннотация|реферат|основная часть|список сокращений|перечень сокращений|литература|библиография|приложение(?:\s+[А-ЯЁA-Z0-9]+)?)[.:]?$/iu.test(normalizedTitle);
-    const shortCenteredTitle =
-      format.alignment === "center" &&
-      normalizedTitle.length <= 140 &&
-      normalizedTitle.split(" ").length <= 18 &&
-      !/[.!?;]\s*$/.test(normalizedTitle);
+      /^(введение|заключение|содержание|оглавление|аннотация|реферат|курсовая работа|дипломная работа|выпускная квалификационная работа|основная часть|список сокращений|перечень сокращений|литература|библиография|приложение(?:\s+[А-ЯЁA-Z0-9]+)?)[.:]?$/iu.test(
+        normalizedTitle,
+      ) ||
+      (/^глава\s+\d+(?:[.\s]|$)/iu.test(normalizedTitle) &&
+        normalizedTitle.length < 180) ||
+      (normalizedTitle.length <= 140 &&
+        /\p{Lu}/u.test(normalizedTitle) &&
+        !/\p{Ll}/u.test(normalizedTitle));
+    const positionedTitleCandidate =
+      ["center", "right", "end"].includes(format.alignment || "") &&
+      (format.firstLine ?? 0) <= 1 &&
+      (format.hanging ?? 0) === 0 &&
+      normalizedTitle.length <= 180 &&
+      normalizedTitle.split(" ").length <= 24;
+    // A custom profile may intentionally use centred text without an indent.
+    // An already matching paragraph needs no title-sensitive edits and must not
+    // lose check coverage simply because a previous pass applied that profile.
+    const matchesBodyProfile =
+      positionedTitleCandidate &&
+      format.alignment === profile.alignment &&
+      (!format.lineRule || format.lineRule === "auto") &&
+      matchesValue(format.line ?? 240, profile.lineSpacing * 240) &&
+      matchesValue(format.firstLine ?? 0, cmToTwips(profile.firstLineIndent)) &&
+      descendants(p, "r").every((run) => {
+        const effective = resolver.run(p, run);
+        return (
+          effective.font?.toLocaleLowerCase() ===
+            profile.fontFamily.toLocaleLowerCase() &&
+          matchesValue(effective.size, profile.fontSize, 0.01)
+        );
+      });
+    const shortPositionedTitle =
+      positionedTitleCandidate && !matchesBodyProfile;
     // Preserve likely headings and title-page lines without inventing hierarchy.
     if (
       commonSectionTitle ||
-      shortCenteredTitle ||
+      shortPositionedTitle ||
+      academicCover.test(normalizedTitle) ||
+      paragraphIndex <= coverEnd ||
       (/^\d+(?:\.\d+){0,3}[.)]?\s+[А-ЯЁA-Z]/u.test(text) &&
         text.length < 130 &&
         !/[.!?;:]\s*$/.test(text))
@@ -167,7 +295,8 @@ export function evaluateDocument(
         wrongSizes,
       );
     const spacing = pFormat.line ?? 240;
-    if (
+    if (gridControlled.has(p)) gridParagraphs.push(p);
+    else if (
       (pFormat.lineRule && pFormat.lineRule !== "auto") ||
       !matchesValue(spacing, profile.lineSpacing * 240)
     ) {
@@ -267,13 +396,6 @@ export function evaluateDocument(
       runs: runsByRule.get(id),
     });
   }
-  const sections = [
-    ...children(parsed.body, "sectPr"),
-    ...directParagraphs.flatMap((p) => {
-      const section = child(child(p, "pPr"), "sectPr");
-      return section ? [section] : [];
-    }),
-  ];
   const conflictsWithPage = (section: XmlElement) => {
     const size = child(section, "pgSz");
     const width = Number(attr(size, "w")),
@@ -300,6 +422,9 @@ export function evaluateDocument(
   const conflictingSections = sections.filter(conflictsWithPage);
   const safeSections = sections.filter(
     (section) => !child(section, "sectPrChange") && !conflictsWithPage(section),
+  );
+  const revisedSections = sections.filter((section) =>
+    child(section, "sectPrChange"),
   );
   const marginsWrong = (section?: XmlElement) =>
     (["left", "right", "top", "bottom"] as const).some(
@@ -357,6 +482,42 @@ export function evaluateDocument(
       },
     });
   };
+  addManual(
+    "paragraph.grid.manual",
+    "paragraphs",
+    "Межстрочный интервал связан с сеткой",
+    "В разделе включена сетка документа, к которой привязываются строки этих абзацев. Простой межстрочный интервал не определяет расстояние между строками; проверьте сетку в редакторе.",
+    gridParagraphs.length,
+    "Активна привязка строк к сетке документа",
+    "Проверьте сетку раздела и межстрочный интервал вручную",
+  );
+  addManual(
+    "references.manual",
+    "references",
+    "Проверьте список литературы",
+    "Библиография имеет собственные требования к отступам, интервалам и описанию источников. Автоматическое оформление основного текста к ней не применяется.",
+    bibliography.length,
+    "Библиографические записи сохранены без изменений",
+    "Проверьте требования к списку источников вручную",
+  );
+  addManual(
+    "text.special.manual",
+    "text",
+    "Особое оформление текста",
+    "В этих абзацах есть индексы, специальные шрифты, сложные письменности или неразрешённое наследование стилей. Чтобы сохранить оформление, проверьте их вручную.",
+    uncertainFormatting.length,
+    "Не все свойства текста можно надёжно вычислить",
+    "Проверьте особые фрагменты в редакторе",
+  );
+  addManual(
+    "page.revisions.manual",
+    "page",
+    "Изменения свойств разделов",
+    "В документе записано рецензирование свойств разделов. Поля этих разделов сохранены; сначала примите или отклоните изменения в редакторе.",
+    revisedSections.length,
+    "Разделы с отслеживаемыми изменениями",
+    "Проверьте поля после завершения рецензирования",
+  );
   addManual(
     "headings.structure",
     "headings",
@@ -438,7 +599,9 @@ export function evaluateDocument(
     "Оценка учитывает проверяемые параметры основного текста и полей. Содержимое таблиц, сноски, нумерация страниц и библиография автоматически не исправляются.",
   );
   const totalChecks =
-    eligible.length * 5 +
+    eligible.length * 5 -
+    complexIndents.length -
+    gridParagraphs.length +
     Math.max(safeSections.length, sections.length === 0 ? 1 : 0);
   const failures = matches
     .filter((m) => m.issue.fixable)
@@ -454,7 +617,7 @@ export function evaluateDocument(
     report: {
       score: totalChecks
         ? Math.max(0, Math.round((1 - failures / totalChecks) * 100))
-        : 100,
+        : 0,
       issues: matches.map((m) => m.issue),
       stats: {
         paragraphs: allParagraphs.length,
@@ -464,7 +627,21 @@ export function evaluateDocument(
         sections: Math.max(1, sections.length),
       },
       excerpt: texts.filter(Boolean).join("\n").slice(0, 1400),
-      checkedRules: 6,
+      checkedRules:
+        (eligible.length
+          ? 3 +
+            Number(complexIndents.length < eligible.length) +
+            Number(gridParagraphs.length < eligible.length)
+          : 0) + Number(safeSections.length > 0 || sections.length === 0),
+      coverage: {
+        checkedParagraphs: eligible.length,
+        totalParagraphs: allParagraphs.filter((p) => paragraphText(p).trim())
+          .length,
+        checkedChecks: totalChecks,
+        totalChecks:
+          allParagraphs.filter((p) => paragraphText(p).trim()).length * 5 +
+          Math.max(1, sections.length),
+      },
       warnings,
     },
     matches,

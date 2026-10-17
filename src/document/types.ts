@@ -43,6 +43,13 @@ export interface AnalysisReport {
   };
   excerpt: string;
   checkedRules: number;
+  /** Coverage is separate from the score: skipped content is never a passed check. */
+  coverage?: {
+    checkedParagraphs: number;
+    totalParagraphs: number;
+    checkedChecks: number;
+    totalChecks: number;
+  };
   warnings: string[];
 }
 

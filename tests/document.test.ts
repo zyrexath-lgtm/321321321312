@@ -206,33 +206,52 @@ describe("safe document transformation", () => {
     ["Заключение.", "left"],
     ["Курсовая работа", "center"],
     ["Министерство науки и высшего образования", "center"],
-  ])("preserves an unstyled title '%s' and requests manual heading review", (title, alignment) => {
-    const titleParagraph = badParagraph
-      .replace("<w:pPr>", '<w:pPr><w:pStyle w:val="Normal"/>')
-      .replace('w:val="left"', `w:val="${alignment}"`)
-      .replace(/<w:t[^>]*>[\s\S]*?<\/w:t>/, `<w:t>${title}</w:t>`);
-    // The second paragraph is ordinary BodyText with a full sentence. It must
-    // still receive real formatting repairs while the title stays untouched.
-    const original = createFixture({
-      rich: false,
-      document: documentXml({ rich: false }).replace(badParagraph, titleParagraph),
-    });
-    const report = analyzeDocument(original, DEFAULT_PROFILE);
-    const heading = report.issues.find((issue) => issue.ruleId === "headings.structure");
-    expect(heading?.fixable).toBe(false);
-    expect(heading?.count).toBe(1);
-    expect(report.issues.some((issue) => issue.fixable && issue.category === "paragraphs")).toBe(true);
-    const fixed = fixAll(original);
-    expect(fixed.fixedCount).toBeGreaterThan(0);
-    const marked = (bytes: Uint8Array) => Array.from(xmlOf(bytes).getElementsByTagNameNS(W_NS, "p"))
-      .filter((p) => p.getAttributeNS(W_NS, "rsidR") === "00112233")
-      .map((p) => new XMLSerializer().serializeToString(p));
-    expect(marked(original)).toHaveLength(1);
-    expect(marked(fixed.bytes)).toEqual(marked(original));
-    expect(textOf(fixed.bytes)).toEqual(textOf(original));
-    expect(fixed.report.issues.filter((issue) => issue.fixable)).toHaveLength(0);
-    expect(fixed.report.issues.find((issue) => issue.ruleId === "headings.structure")?.fixable).toBe(false);
-  });
+  ])(
+    "preserves an unstyled title '%s' and requests manual heading review",
+    (title, alignment) => {
+      const titleParagraph = badParagraph
+        .replace("<w:pPr>", '<w:pPr><w:pStyle w:val="Normal"/>')
+        .replace('w:val="left"', `w:val="${alignment}"`)
+        .replace(/<w:t[^>]*>[\s\S]*?<\/w:t>/, `<w:t>${title}</w:t>`);
+      // The second paragraph is ordinary BodyText with a full sentence. It must
+      // still receive real formatting repairs while the title stays untouched.
+      const original = createFixture({
+        rich: false,
+        document: documentXml({ rich: false }).replace(
+          badParagraph,
+          titleParagraph,
+        ),
+      });
+      const report = analyzeDocument(original, DEFAULT_PROFILE);
+      const heading = report.issues.find(
+        (issue) => issue.ruleId === "headings.structure",
+      );
+      expect(heading?.fixable).toBe(false);
+      expect(heading?.count).toBe(1);
+      expect(
+        report.issues.some(
+          (issue) => issue.fixable && issue.category === "paragraphs",
+        ),
+      ).toBe(true);
+      const fixed = fixAll(original);
+      expect(fixed.fixedCount).toBeGreaterThan(0);
+      const marked = (bytes: Uint8Array) =>
+        Array.from(xmlOf(bytes).getElementsByTagNameNS(W_NS, "p"))
+          .filter((p) => p.getAttributeNS(W_NS, "rsidR") === "00112233")
+          .map((p) => new XMLSerializer().serializeToString(p));
+      expect(marked(original)).toHaveLength(1);
+      expect(marked(fixed.bytes)).toEqual(marked(original));
+      expect(textOf(fixed.bytes)).toEqual(textOf(original));
+      expect(fixed.report.issues.filter((issue) => issue.fixable)).toHaveLength(
+        0,
+      );
+      expect(
+        fixed.report.issues.find(
+          (issue) => issue.ruleId === "headings.structure",
+        )?.fixable,
+      ).toBe(false);
+    },
+  );
 
   it("exports original and corrected rich fixtures for independent Office validation", () => {
     const original = createFixture();

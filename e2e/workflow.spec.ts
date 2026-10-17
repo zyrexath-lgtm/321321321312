@@ -47,7 +47,7 @@ test("real upload, individual fix, fix all, download and safe reset", async ({
   await expect(page.getByRole("checkbox")).toHaveCount(0);
   await expect(page.locator(".score-ring")).toHaveAttribute(
     "aria-label",
-    "Оценка оформления 100 из 100",
+    "Проверенные параметры: 100 из 100",
   );
   const downloadEvent = page.waitForEvent("download");
   await page.getByRole("button", { name: "Скачать DOCX" }).first().click();

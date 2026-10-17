@@ -77,11 +77,30 @@ function run<T>(
         ),
       );
     };
+    worker.onmessageerror = () => {
+      finish();
+      reject(
+        new Error(
+          "Не удалось получить результат обработки. Попробуйте ещё раз.",
+        ),
+      );
+    };
     // Transfer a copy: the original is retained for retry, selective fixes and download.
-    const copy = new Uint8Array(bytes);
-    worker.postMessage({ operation, bytes: copy, profile, issueIds }, [
-      copy.buffer,
-    ]);
+    try {
+      const copy = new Uint8Array(bytes);
+      worker.postMessage({ operation, bytes: copy, profile, issueIds }, [
+        copy.buffer,
+      ]);
+    } catch {
+      // Copy/structured-clone failures otherwise leave an idle worker and timer
+      // alive after the caller's promise has already rejected.
+      finish();
+      reject(
+        new Error(
+          "Не удалось передать документ на обработку. Попробуйте ещё раз.",
+        ),
+      );
+    }
   });
 }
 

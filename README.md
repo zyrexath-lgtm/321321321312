@@ -50,3 +50,7 @@ npm run test:e2e
 E2E используют системный Chromium по пути `/usr/bin/chromium`, если он доступен. На другой машине выполните `npx playwright install chromium` или задайте `CHROMIUM_PATH=/путь/к/chromium`. Браузерные тесты запускают dev-сервер автоматически. Они не требуют внешнего сервиса. В `.github/workflows/checks.yml` добавлены сборка, regression tests и E2E для GitHub Actions.
 
 Для разработки используйте существующий checkout: облачная задача уже изолирована, создавать дополнительный Git worktree не требуется.
+
+## Проверка V1
+
+Сценарии adversarial-аудита, независимые Office/структурные проверки, измерения производительности и оставшиеся ограничения описаны в [docs/HARDENING.md](docs/HARDENING.md). Дополнительная проверка с установленным LibreOffice: `npm run test:compatibility`. Production-приложение по-прежнему работает целиком в браузере и не требует этих инструментов.
